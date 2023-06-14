@@ -20,14 +20,30 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
+  HomeScreen({super.key});
+  String name = 'Hello World';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
-      appBar: AppBar(
-        title: Text('Home Screen'),
+      backgroundColor: Colors.white,
+      //appBar: AppBar(),
+      body: SafeArea(
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          child: Column(children: [
+            Text(
+              name,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 50,
+                fontWeight: FontWeight.bold,
+                color: Colors.green,
+              ),
+            ),
+            TextButton(onPressed: () {}, child: Text('Click me'))
+          ]),
+        ),
       ),
     );
   }
