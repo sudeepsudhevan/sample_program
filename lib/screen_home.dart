@@ -1,3 +1,5 @@
+/// The ScreenHome class is a stateful widget that displays a counter and a button to increment it,
+/// while the DisplayText class is a stateless widget that displays a given text.
 import 'package:flutter/material.dart';
 
 class ScreenHome extends StatefulWidget {
@@ -18,7 +20,7 @@ class _ScreenHomeState extends State<ScreenHome> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('You have pushed the button this many times:'),
-            Text('$_counter', style: Theme.of(context).textTheme.headlineLarge),
+            DisplayText(countertext: '$_counter'),
           ],
         ),
       ),
@@ -34,3 +36,16 @@ class _ScreenHomeState extends State<ScreenHome> {
     );
   }
 }
+
+/// The DisplayText class is a stateless widget that displays a given text.
+class DisplayText extends StatelessWidget {
+  final String countertext;
+  const DisplayText({super.key, required this.countertext});
+  //const DisplayText({Key? key, required this.Countertext}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Text(countertext);
+  }
+}
+
+// here display text is a stateless widget and its is generated each click of the button so the value changes
