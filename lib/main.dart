@@ -19,110 +19,49 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
-  String name = 'Hello World';
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final _textController = TextEditingController();
+
+  String _text = 'text will be displayed here';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      //appBar: AppBar(),
       body: SafeArea(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            flex: 2,
-            child: Container(
-              color: Colors.red,
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      name,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.green,
-                      ),
-                    ),
-                    TextButton(
-                        onPressed: () {
-                          print('Text Button Clicked');
-                        },
-                        child: Text('Click me')),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ElevatedButton(
-                            onPressed: () {
-                              print('Elevated Button Clicked');
-                            },
-                            child: Text('Click me')),
-                        IconButton(
-                            onPressed: () {
-                              print('Icon Button Clicked');
-                            },
-                            icon: Icon(Icons.mic)),
-                      ],
-                    ),
-                  ]),
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Container(
+            color: Color.fromARGB(255, 6, 222, 230),
+            child: Column(
+              children: [
+                TextField(
+                    controller: _textController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Type something here',
+                    )),
+                ElevatedButton(
+                    onPressed: () {
+                      //Get data from text field
+                      print(_textController.text);
+                      setState(() {
+                        _text = _textController.text;
+                      });
+                    },
+                    child: Text('click here')),
+                Text(_text)
+              ],
             ),
           ),
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.deepOrange,
-                borderRadius: BorderRadius.circular(50),
-                border: Border.all(
-                  color: Color.fromARGB(255, 5, 53, 158),
-                  width: 5,
-                ),
-              ),
-              child: Center(child: Text('you are hacked')),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              color: Colors.blue,
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      name,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.green,
-                      ),
-                    ),
-                    TextButton(
-                        onPressed: () {
-                          print('Text Button Clicked');
-                        },
-                        child: Text('Click me')),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ElevatedButton(
-                            onPressed: () {
-                              print('Elevated Button Clicked');
-                            },
-                            child: Text('Click me')),
-                        IconButton(
-                            onPressed: () {
-                              print('Icon Button Clicked');
-                            },
-                            icon: Icon(Icons.mic)),
-                      ],
-                    ),
-                  ]),
-            ),
-          ),
-        ],
-      )),
+        ),
+      ),
     );
   }
 }
